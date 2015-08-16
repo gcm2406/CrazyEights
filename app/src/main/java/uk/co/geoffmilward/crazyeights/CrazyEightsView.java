@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 /*
  * First attempt at a view
@@ -26,6 +28,12 @@ public class CrazyEightsView extends View {
         circleX=200;
         circleY=300;
         radius= 50;
+
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     @Override
@@ -35,4 +43,26 @@ public class CrazyEightsView extends View {
                 redPaint);
 
     }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        int eventaction = event.getAction();
+        int X = (int)event.getX();
+        int Y = (int)event.getY();
+
+
+        switch (eventaction ) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+
+                circleX = X;
+                circleY = Y;
+                break;
+        }
+        invalidate();
+        return true;
+    }
+
 }
